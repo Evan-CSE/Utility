@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-
+import time
 
 def showProfile():
 	user = input("Enter Handle   ==>    ");
@@ -57,15 +57,31 @@ def SearchProblem():
 
 
 
+def UpComingContest():
+	print("This will not contain GYM Contest");
+	time.sleep(2);
+	print("Gathering Information ########### 50%");
+	print("############################################### 100%");
+	flag = False;
+	try:
+		response = requests.get("https://codeforces.com/api/contest.list?gym=false");
+		flag = True;
+				
+	except:
+		print("Sorry! Something went wrong! Its not you ; It may be from our side or the server is down at this moment");
+	if(flag==True):
+		lst = response.json()['result'];
+		#cnt=0;
+		for i in lst:
+			if i['phase'] == "BEFORE" and i['type']=="CF" and i['frozen']==False:
+				print("Name ==> "+i['name']+" ||  Starting Time ==> "+str(datetime.fromtimestamp(i['startTimeSeconds']))+" ||  Duration : "+str(i['durationSeconds']/3600)+" hours ");
+			
 
 
 
 
-
-
-
-
-SearchProblem();
+#UpComingContest()
+#SearchProblem();
 #showProfile();
 
 #Script by Evan Shareef
