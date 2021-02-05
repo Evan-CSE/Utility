@@ -1,3 +1,9 @@
+##############			#################
+#Requirements: requests ==> pip3 install requests
+##############			#################
+
+
+
 import requests
 from datetime import datetime
 import time
