@@ -21,9 +21,52 @@ def showProfile():
 	print("Maximum Rating ==> "+str(result[0]['maxRating']));
 	print("Maximum Rank ==> "+result[0]['maxRank']);
 	print("Last Visit ==> "+str(datetime.fromtimestamp(result[0]['lastOnlineTimeSeconds'])));
+	
+	
+	
+	
+	
 
 
-showProfile();
+def SearchProblem():
+	search_string = input("Search By? : tags/ProblemsetName ==> ");
+	fl = True;
+	if search_string=="tags":
+		search_string = input("Enter Problem Tag ==> ");
+		response = requests.get("https://codeforces.com/api/problemset.problems?tags="+search_string);
+	else:
+		try:
+			search_string = input("Enter Problem Name ==> ");
+			response = requests.get("https://codeforces.com/api/problemset.problems?ProblemsetName="+search_string);
+		except:
+			fl = false;
+			print("Something went wrong. Either the server is down or check for your query");
+	if fl:
+		lst = (response.json()['result']['problems']);
+		cnt = 0;
+		for i in lst:
+			try:
+				print("Cotest Id & Problem Num ==> "+str(i['contestId'])+i['index']+" ||   Name ==> "+i['name']+"         ||        Rating  ==> "+str(i['rating']));
+				cnt+=1;
+			except:
+				f = 0;
+		print("Total Problem Count  = "+ str(cnt));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SearchProblem();
+#showProfile();
 
 #Script by Evan Shareef
 #evanshareeef@gmail.com
