@@ -1,0 +1,29 @@
+import requests
+from datetime import datetime
+
+
+def showProfile():
+	user = input("Enter Handle   ==>    ");
+	response = requests.get("https://codeforces.com/api/user.info?handles="+user)
+	result = response.json()['result'];
+	try:
+		print("First Name   ==> "+result[0]['firstName']);
+		print("Last Name    ==> "+ result[0]['lastName']);
+	except:
+		print("");
+	try:
+		print("Organization ==> "+result[0]['organization']);
+		print("From "+result[0]['city']+" , "+result[0]['country']);
+	except:
+		print("");
+	print("Current Rating ==>"+str(result[0]['rating']));
+	print("Rank: "+result[0]['rank']);
+	print("Maximum Rating ==> "+str(result[0]['maxRating']));
+	print("Maximum Rank ==> "+result[0]['maxRank']);
+	print("Last Visit ==> "+str(datetime.fromtimestamp(result[0]['lastOnlineTimeSeconds'])));
+
+
+showProfile();
+
+#Script by Evan Shareef
+#evanshareeef@gmail.com
