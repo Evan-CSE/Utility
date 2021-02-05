@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys;
 
 print(text2art("Script By Evan"));
 driver = webdriver.Chrome();
-driver.get("https://www.facebook.com/messages/t/100009757474012");
+driver.get("https://www.facebook.com/messages/");
 el = driver.find_element_by_id("email");
 user = input("Enter username");
 el.send_keys(user);
