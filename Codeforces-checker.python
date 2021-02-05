@@ -7,6 +7,24 @@
 import requests
 from datetime import datetime
 import time
+from art import *
+import os
+
+
+
+def screen_clear():
+   # for mac and linux(here, os.name is 'posix')
+   if os.name == 'posix':
+      _ = os.system('clear')
+   else:
+      # for windows platfrom
+      _ = os.system('cls')
+
+
+
+
+
+
 
 def showProfile():
 	user = input("Enter Handle   ==>    ");
@@ -27,7 +45,10 @@ def showProfile():
 	print("Maximum Rating ==> "+str(result[0]['maxRating']));
 	print("Maximum Rank ==> "+result[0]['maxRank']);
 	print("Last Visit ==> "+str(datetime.fromtimestamp(result[0]['lastOnlineTimeSeconds'])));
-	
+	print("Returning to main in 5 seconds");
+	time.sleep(5);
+	screen_clear();
+	main();
 	
 	
 	
@@ -57,6 +78,10 @@ def SearchProblem():
 			except:
 				f = 0;
 		print("Total Problem Count  = "+ str(cnt));
+	print("Returning to main in 3 seconds");
+	time.sleep(3);
+	screen_clear()
+	main();
 
 
 
@@ -81,14 +106,60 @@ def UpComingContest():
 		for i in lst:
 			if i['phase'] == "BEFORE" and i['type']=="CF" and i['frozen']==False:
 				print("Name ==> "+i['name']+" ||  Starting Time ==> "+str(datetime.fromtimestamp(i['startTimeSeconds']))+" ||  Duration : "+str(i['durationSeconds']/3600)+" hours ");
+	print("Returning to main in 3 seconds");
+	time.sleep(3);
+	screen_clear()
+	main();
 			
 
 
 
 
-#UpComingContest()
-#SearchProblem();
-#showProfile();
+
+
+
+def main():
+	print("Bismilla- hir Rahma- nir Rahi-m");
+	time.sleep(1);
+	print(text2art("Script   by   Evan"));
+	time.sleep(1);
+	print("[1] Show Upcoming Contest");
+	print("[2] Search Problem ");
+	print("[3] Search User by Handle ");
+	print("Type E/e to exit");
+	choice = (input("Enter your choice : "));
+	if choice=="e" or choice=="E":
+		screen_clear();
+		print(text2art("Assala mu alaikum"));
+		print("Script by Evan Shareef");
+		print("mail: evanshareef@gmail.com");
+		exit();
+	try:
+		choice = int(choice);
+	except:
+		print("Enter valid choice");
+		time.sleep(1);
+		screen_clear();
+		main();
+	if choice==1:
+		UpComingContest()
+	elif choice==2:
+		SearchProblem();
+	elif choice==3:
+		showProfile();
+	else:
+		print("Enter valid choice");
+		time.sleep(1);
+		screen_clear();
+		main();
+	exit();
+
+
+
+
+
+
+main();
 
 #Script by Evan Shareef
 #evanshareeef@gmail.com
